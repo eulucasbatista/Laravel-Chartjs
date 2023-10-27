@@ -17,57 +17,46 @@
     <script>
         let chart;
 
+        // Coloque os valores das porcentagens aqui
+        const percentages = @json($percentages);
+
         function getData() {
-            $.ajax({
-                url: '/doughnutchart-data',
-                method: 'GET',
-                dataType: 'json',
+            const ctx = document.getElementById('doughnutChart').getContext('2d');
+            if (chart) {
+                chart.destroy();
+            }
+            chart = new Chart(ctx, {
+                type: 'doughnut',
                 data: {
-                    'country': $("#country").val(),
-                    'from': $("#from").val(),
-                    'to': $("#to").val(),
+                    labels: ['Confirmed', 'Deaths', 'Recovered', 'Active'],
+                    datasets: [{
+                        data: Object.values(percentages), // Use as porcentagens aqui
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                        ],
+                    }]
                 },
-                success: function(data) {
-                    const ctx = document.getElementById('doughnutChart').getContext('2d');
-                    if (chart) {
-                        chart.destroy();
-                    }
-                    chart = new Chart(ctx, {
-                        type: 'doughnut',
-                        data: {
-                            labels:['Confirmed', 'Recovered', 'Active'], // Substitua pelo array de rótulos
-                            datasets: [{
-                                data: data.data, // Substitua pelo array de porcentagens
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.7)',
-                                    'rgba(75, 192, 192, 0.7)',
-                                    'rgba(54, 162, 235, 0.7)'
-                                ],
-                            }]
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right',
                         },
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    display: true,
-                                    position: 'right',
-                                },
-                                datalabels: {
-                                    color: '#fff',
-                                    formatter: (value, context) => {
-                                        return value.toFixed(2) + '%'; // Formata para duas casas decimais
-                                    },
-                                    font: {
-                                        weight: 'bold',
-                                    },
-                                },
+                        datalabels: {
+                            color: '#fff',
+                            formatter: (value, context) => {
+                                return value.toFixed(2) + '%'; // Formata para duas casas decimais
                             },
-                        }
-                    });
-                },
-                error: function(error) {
-                    console.error('Error fetching doughnut chart data:', error);
+                            font: {
+                                weight: 'bold',
+                            },
+                        },
+                    },
                 }
             });
         }

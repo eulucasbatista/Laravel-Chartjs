@@ -16,7 +16,7 @@
                     </li>
 
                     <li class="menu-item doughnut_Menu">
-                        <a href="doughnut-chart" class="menu-link">
+                        <a href="doughnutchart" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Doughnut Chart</div>
                         </a>

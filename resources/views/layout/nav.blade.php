@@ -45,7 +45,7 @@
                                     <li>
                                         <a class="dropdown-item" href="#">
                                             <i class="bx bx-user me-2"></i>
-                                            <span class="align-middle">Neu Perfil</span>
+                                            <span class="align-middle">Meu Perfil</span>
                                         </a>
                                     </li>
                                     <li>

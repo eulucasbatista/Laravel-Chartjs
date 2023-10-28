@@ -48,9 +48,13 @@
                             position: 'right',
                         },
                         datalabels: {
-                            color: '#fff',
+                            display: true, // Exibe os rótulos
+                            color: '#fff', // Cor dos rótulos
+                           // align: 'end', // Alinha os rótulos no final da fatia
+                        //    anchor: 'end', // Ancora os rótulos na extremidade da fatia
+                            offset: 0, // Define o deslocamento dos rótulos em relação à fatia
                             formatter: (value, context) => {
-                                return value.toFixed(2) + '%'; // Formata para duas casas decimais
+                                return value.toFixed(2) + '%';
                             },
                             font: {
                                 weight: 'bold',
